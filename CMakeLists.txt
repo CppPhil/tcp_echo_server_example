@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(tcp_echo_server_project)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 add_executable(
   tcp_echo_server
   library_initializer.cpp

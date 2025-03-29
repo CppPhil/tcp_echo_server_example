@@ -1,7 +1,10 @@
 #include "library_initializer.hpp"
 
 namespace se {
-LibraryInitializer::LibraryInitializer() : m_wsaData{}
+LibraryInitializer::LibraryInitializer()
+#ifdef _WIN32
+  : m_wsaData{}
+#endif
 {
 #ifdef _WIN32
   if (WSAStartup(MAKEWORD(2, 2), &m_wsaData) != 0) {

@@ -22,9 +22,14 @@ void runEchoServer(int port)
       std::cout << "Client connected\n";
 
       std::thread thread([clientSocket = std::move(clientSocket)]() mutable {
-        for (;;) {
-          std::string buffer{clientSocket.readLine()};
-          clientSocket.write(buffer.c_str(), buffer.size());
+        try {
+          for (;;) {
+            std::string buffer{clientSocket.readLine()};
+            clientSocket.write(buffer.c_str(), buffer.size());
+          }
+        }
+        catch ([[maybe_unused]] const std::runtime_error& exception) {
+          return;
         }
       });
       thread.detach();
