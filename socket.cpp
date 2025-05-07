@@ -17,6 +17,7 @@ Socket& Socket::operator=(Socket&& other) noexcept
 {
   SocketType temp{other.m_handle};
   other.m_handle = invalidSocketHandle;
+  close();
   m_handle       = temp;
   return *this;
 }
